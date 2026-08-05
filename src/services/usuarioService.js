@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:5000/api/usuarios";
+const API_URL = `${import.meta.env.VITE_API_URL}/usuarios`;
 
 export async function obtenerUsuarios() {
   const respuesta = await fetch(API_URL);
