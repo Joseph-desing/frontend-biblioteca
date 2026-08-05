@@ -1,0 +1,6 @@
+import { FiEdit2, FiTrash2, FiTag } from "react-icons/fi";
+function CategoriaTable({ categorias, onEditar, onEliminar }) {
+  if (categorias.length === 0) return <p className="empty-state">No existen categorías registradas.</p>;
+  return <div className="table-card"><div className="table-card__heading"><div><span><FiTag /></span><div><h3>Lista de categorías</h3><p>{categorias.length} registros encontrados</p></div></div></div><div className="table-scroll"><table><thead><tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Estado</th><th>Fecha de creación</th><th>Acciones</th></tr></thead><tbody>{categorias.map((categoria) => <tr key={categoria.id}><td>#{categoria.id}</td><td><strong>{categoria.nombre}</strong></td><td>{categoria.descripcion || "Sin descripción"}</td><td><span className={`badge badge--${categoria.estado?.toLowerCase()}`}>{categoria.estado}</span></td><td>{categoria.created_at || "Sin fecha"}</td><td className="table-actions"><button type="button" className="icon-button icon-button--edit" onClick={() => onEditar(categoria)} aria-label="Editar categoría"><FiEdit2 /><span>Editar</span></button><button type="button" className="icon-button icon-button--delete" onClick={() => onEliminar(categoria.id)} aria-label="Eliminar categoría"><FiTrash2 /><span>Eliminar</span></button></td></tr>)}</tbody></table></div></div>;
+}
+export default CategoriaTable;
